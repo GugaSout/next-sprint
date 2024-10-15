@@ -1,0 +1,78 @@
+.div-veiculos{
+    display: flex;
+    
+    align-items: center;
+    flex-direction: column;
+    background-color:#71b6ff;
+    height: 90vh;
+    padding: 20px;
+}
+.div-veiculoscad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    overflow: auto;
+}
+.div-veiculoscad p {
+    margin: 0px 10px;
+}
+.veiculo{
+    display: flex;
+    align-items: center;
+    margin: 3px;
+}
+.div-form{
+    background-color: white;
+    border-radius: 20px;
+    width: 50vw;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.div-form input{
+    font-size: 1.1em;
+    margin: 5px;
+    padding: 5px;
+    width: 20vw;
+    border-radius: 10px;
+    border: none;
+    background-color: #60adff;
+}
+.div-form select{
+    padding: 5px;
+    font-size: 1.1em;
+    width: 20vw;
+    border-radius: 10px;
+    background-color: #60adff;
+}
+.btn-Veiculo{
+    margin: 20px;
+    padding: 10px;
+    width: 20vw;
+    background-color: rgb(0, 123, 255);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: 0.5s;
+}
+.btn-Veiculo:hover{
+    color: #007bff;
+    
+    background-color: white;
+    border:1px solid #007bff;
+}
+.btn-alt-Veiculo{
+    background-color: #007bff;
+    border: none;
+    border-radius: 100%;
+    padding: 5px;
+    cursor: pointer;
+}
+.btn-alt-Veiculo img{
+    width: 20px;
+}

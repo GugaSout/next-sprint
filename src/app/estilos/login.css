@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.Mainlog{
+    font-family: inherit;
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+.div-wpp-carro{
+    height: 100vh;
+    width: 65%;
+    background-image: url('/wallpaper_carro_paisagem.jpg');
+    background-position: left;
+    background-size: cover; 
+}
+.DivLogin{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.DivLogin h1{
+    font-size: 3em;
+}
+.DivLogin h2{
+    text-align: center;
+    font-size: 2em;
+}
+.Login{
+    margin-top: 60px;
+    width: 100%;
+}
+.Linput{
+    padding: 10px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    
+}
+.lblLogin{
+    font-weight: bold;
+    text-align:left;
+    margin-top: 25px;
+}
+.inpLogin{
+    padding: 10px 0px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    width: 80%;
+    text-indent: 10px;
+    
+}
+.btnLog{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 40%;
+    align-self: center;
+    font-family: inherit;
+    font-weight: bold;
+    margin: 15px 0px;
+}
+.btnLog:hover{
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 9px 19px;
+    border-radius: 5px; 
+    transition: 0.5s;
+    
+}
+.Login a{
+    margin-top: 20px;
+    color:rgb(0, 67, 155);
+    font-weight: bold;
+    text-align: center;
+}
+.icones_redes{
+  text-align: center;
+  padding: 15px;
+  margin:20px 0px;
+}
+.redes{
+    margin: 10px;
+    width: 3vw;
+}

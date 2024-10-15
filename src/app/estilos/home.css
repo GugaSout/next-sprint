@@ -1,0 +1,39 @@
+  
+.Home {
+  text-align: center;
+  min-height: 90vh;
+  background-color: white;
+  display: flex;
+  padding: 10px;
+}
+.hero-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.hero-content {
+  max-width: 50%;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  color: #007bff;
+}
+
+.hero-content p {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+.carro{
+  width: 50vw;
+}
