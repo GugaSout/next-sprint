@@ -52,7 +52,7 @@
     margin: 10px 0px;
     border-radius: 5px;
     border: 1px solid grey;
-    width: 80%;
+    width: 95%;
     text-indent: 10px;
     
 }
@@ -73,8 +73,7 @@
     background-color: white;
     color: #007bff;
     border: 1px solid #007bff;
-    padding: 9px 19px;
-    border-radius: 5px; 
+    padding: 14px;
     transition: 0.5s;
     
 }
@@ -87,7 +86,7 @@
 .icones_redes{
   text-align: center;
   padding: 15px;
-  margin:20px 0px;
+  margin:10px 0px;
 }
 .redes{
     margin: 10px;

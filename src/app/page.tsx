@@ -30,7 +30,8 @@ export default function Home() {
 
   return (
     
-      <div className="Home">
+    <div className="Home">
+      
         <section className="hero-section">
           <div className="hero-content">
             <h1>Car Doctor</h1>
