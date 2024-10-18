@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import './../estilos/cadastro.css'; 
+import '@/estilos/cadastro.css'; 
 
 export default function Cadastro() {
     const [formData, setFormData] = useState({

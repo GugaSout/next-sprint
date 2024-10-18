@@ -1,12 +1,17 @@
 "use client"
 
 import { useEffect } from 'react';
-import './estilos/home.css';
+import '@/estilos/home.css';
 import './types';
-import Header from './../components/header';
+import Header from '@/components/header';
+
+
 
 export default function Home() {
+
   useEffect(() => {
+    
+    if (window.watsonAssistantChatOptions) return;
 
     window.watsonAssistantChatOptions = {
       integrationID: "d410df2d-ab85-40d5-98e5-2e4a60274a5d",
@@ -15,21 +20,23 @@ export default function Home() {
       onLoad: async (instance) => { await instance.render(); }
     };
 
-
     const script = document.createElement('script');
     script.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
       (window.watsonAssistantChatOptions.clientVersion || 'latest') +
       "/WatsonAssistantChatEntry.js";
+
     document.head.appendChild(script);
 
-    // Limpeza do efeito
+   
     return () => {
       document.head.removeChild(script);
     };
   }, []);
 
   return (
-    
+      <>
+      <Header/>
+      
       <div className="Home">
         <section className="hero-section">
           <div className="hero-content">
@@ -43,6 +50,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      </>
     
   );
 }

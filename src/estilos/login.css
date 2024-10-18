@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 }
 .DivLogin h1{
     font-size: 3em;
@@ -60,10 +61,9 @@
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 15px;
+    padding: 15px 50px;
     border-radius: 10px;
     cursor: pointer;
-    width: 40%;
     align-self: center;
     font-family: inherit;
     font-weight: bold;
@@ -73,13 +73,13 @@
     background-color: white;
     color: #007bff;
     border: 1px solid #007bff;
-    padding: 9px 19px;
-    border-radius: 5px; 
+    padding: 14px 49px;
+    border-radius: 10px; 
     transition: 0.5s;
     
 }
 .Login a{
-    margin-top: 20px;
+    margin-top: 15px;
     color:rgb(0, 67, 155);
     font-weight: bold;
     text-align: center;
@@ -87,9 +87,9 @@
 .icones_redes{
   text-align: center;
   padding: 15px;
-  margin:20px 0px;
+
 }
 .redes{
-    margin: 10px;
+    margin: 5px;
     width: 3vw;
 }

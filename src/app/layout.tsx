@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/header";
+
 
 export const metadata: Metadata = {
   title: "CarDoctor",
@@ -18,7 +18,7 @@ export default function RootLayout({
       <link rel="icon" href="/roda.png" type="image/x-icon" />
       </head>
       <body>
-      <Header/>
+      
         {children}
       </body>
     </html>

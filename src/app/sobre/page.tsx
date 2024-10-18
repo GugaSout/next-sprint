@@ -1,9 +1,12 @@
-import './../estilos/sobre.css'
+import Header from '@/components/header'
+import '@/estilos/sobre.css'
 
 export default function Sobre(){
     
    
     return(
+        <>
+        <Header/>
         <main className="main_sobre">
             
             <div className='div-Sobre'>
@@ -37,5 +40,6 @@ export default function Sobre(){
             
 
         </main>
+        </>
     )
 }

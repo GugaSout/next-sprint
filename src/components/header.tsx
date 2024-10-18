@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import { useRouter } from "next/navigation"; 
-import './../app/estilos/header.css'
+import '@/estilos/header.css'
 
 export default function Header() {
     const router = useRouter();

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link';
-import "./../estilos/login.css"
+import "@/estilos/login.css"
 import { useRouter } from "next/navigation";
 
 export default function Login() {

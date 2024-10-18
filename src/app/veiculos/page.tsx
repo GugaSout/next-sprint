@@ -1,7 +1,7 @@
 "use client"
-
+import Header from '@/components/header'
 import React, { useState } from 'react';
-import './../estilos/veiculos.css'
+import '@/estilos/veiculos.css'
 
 interface Veiculo {
   modelo: string;
@@ -63,6 +63,8 @@ export default function Veiculos(){
 
 
   return (
+    <>
+    <Header/>
     <div className='div-veiculos'>
       {veiculos.length > 0 && (
         <div className='div-veiculoscad'>
@@ -94,7 +96,7 @@ export default function Veiculos(){
               onChange={handleChange}
               placeholder='Modelo'
               required
-            />
+              />
 
             <input
               type="text"
@@ -103,7 +105,7 @@ export default function Veiculos(){
               onChange={handleChange}
               placeholder='Ano'
               required
-            />
+              />
 
             <input
               type="text"
@@ -112,7 +114,7 @@ export default function Veiculos(){
               onChange={handleChange}
               placeholder='Placa'
               required
-            />
+              />
 
             <input
               type="text"
@@ -121,7 +123,7 @@ export default function Veiculos(){
               onChange={handleChange}
               placeholder='Quilometragem'
               required
-            />
+              />
 
             <select name="tipo" value={veiculo.tipo} onChange={handleChange} required>
               <option value="">Selecione um tipo</option>
@@ -137,6 +139,7 @@ export default function Veiculos(){
         </form>
       )}
     </div>
+    </>
   )
 }
     
