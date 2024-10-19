@@ -2,8 +2,12 @@
 
 import React, { useState } from 'react';
 import '@/estilos/cadastro.css'; 
+import { useRouter } from 'next/navigation';
 
 export default function Cadastro() {
+
+    const router = useRouter();
+
     const [step, setStep] = useState(1);  // Controla a etapa do formulário
     const [formData, setFormData] = useState({
         nome: '',
@@ -46,6 +50,7 @@ export default function Cadastro() {
         } else if (step === 3 && validarSenha()) {
             // Aqui, você pode fazer a submissão final ou redirecionar o usuário
             console.log('Formulário enviado com sucesso:', formData);
+            router.push('/'); 
             // Redirecionar ou exibir mensagem de sucesso
         }
     };
