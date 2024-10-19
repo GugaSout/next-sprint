@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import '@/estilos/home.css';
-import '../types';
+
 import Header from '@/components/header';
 
 declare global {
@@ -21,26 +21,28 @@ declare global {
 export default function Home() {
 
   useEffect(() => {
-  
-    if (window.watsonAssistantChatOptions) return;
+    // Verifica se o código está sendo executado no cliente
+    if (typeof window !== 'undefined') {
+      if (window.watsonAssistantChatOptions) return;
 
-    window.watsonAssistantChatOptions = {
-      integrationID: "d410df2d-ab85-40d5-98e5-2e4a60274a5d",
-      region: "us-south",
-      serviceInstanceID: "198a297c-9be0-4faa-a3c1-a4a3ccd3f138",
-      onLoad: async (instance) => { await instance.render(); }
-    };
+      window.watsonAssistantChatOptions = {
+        integrationID: "d410df2d-ab85-40d5-98e5-2e4a60274a5d",
+        region: "us-south",
+        serviceInstanceID: "198a297c-9be0-4faa-a3c1-a4a3ccd3f138",
+        onLoad: async (instance) => { await instance.render(); }
+      };
 
-    const script = document.createElement('script');
-    script.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
-      (window.watsonAssistantChatOptions.clientVersion || 'latest') +
-      "/WatsonAssistantChatEntry.js";
+      const script = document.createElement('script');
+      script.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || 'latest') +
+        "/WatsonAssistantChatEntry.js";
 
-    document.head.appendChild(script);
+      document.head.appendChild(script);
 
-    return () => {
-      document.head.removeChild(script);
-    };
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
   }, []);
 
   return (
