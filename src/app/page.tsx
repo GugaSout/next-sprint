@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import { useEffect } from 'react';
 import '@/estilos/home.css';
 
@@ -11,15 +10,17 @@ declare global {
       integrationID: string;
       region: string;
       serviceInstanceID: string;
-      onLoad: (instance: any) => Promise<void>;
+      onLoad: (instance: WatsonAssistantInstance) => Promise<void>;
       clientVersion?: string;
     };
   }
 }
 
+interface WatsonAssistantInstance {
+  render: () => Promise<void>;
+}
 
 export default function Home() {
-
   useEffect(() => {
     // Verifica se o código está sendo executado no cliente
     if (typeof window !== 'undefined') {
@@ -29,7 +30,7 @@ export default function Home() {
         integrationID: "d410df2d-ab85-40d5-98e5-2e4a60274a5d",
         region: "us-south",
         serviceInstanceID: "198a297c-9be0-4faa-a3c1-a4a3ccd3f138",
-        onLoad: async (instance: { render: () => Promise<void> }) => { 
+        onLoad: async (instance: WatsonAssistantInstance) => { 
           await instance.render(); 
         }
       };
