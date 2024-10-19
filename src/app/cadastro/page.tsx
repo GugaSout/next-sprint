@@ -72,7 +72,7 @@ export default function Cadastro() {
                                 <input className="objCad" type="date" name="dataNascimento" required  value={formData.dataNascimento} onChange={handleChange}/>
                                 <label className='lblCad' htmlFor="email">Email</label>
                                 <input className="objCad" type="email" name="email" required  value={formData.email} onChange={handleChange}/>
-                                <button className="btnCad" type="submit">Próximo</button>
+                                <button className="btnCad" type="submit">PRÓXIMO</button>
                             </div>
                         </div>
                     )}
@@ -91,7 +91,7 @@ export default function Cadastro() {
                                 <input className="objCad" type="text" name="cep" required value={formData.cep} onChange={handleChange}/>
                                 <label className='lblCad' htmlFor="endereco">Endereço</label>
                                 <input className="objCad" type="text" name="endereco" required value={formData.endereco} onChange={handleChange}/>
-                                <button className="btnCad" type="submit">Próximo</button>
+                                <button className="btnCad" type="submit">PRÓXIMO</button>
                             </div>
                         </div>
                     )}
