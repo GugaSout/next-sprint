@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import '@/estilos/home.css';
-import './types';
+import '../types';
 import Header from '@/components/header';
 
 
