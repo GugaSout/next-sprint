@@ -8,14 +8,11 @@ export default function Sobre(){
         <>
         <Header/>
         <main className="main_sobre">
-            
             <div className='div-Sobre'>
-
                 <div className='dsec-sobre'>
                 <section className='sec-sobre'>
                     <h1>CarDoctor</h1>
                 </section>
-
                 </div>
             </div>
             <footer className='footer_Sobre'>
@@ -37,8 +34,6 @@ export default function Sobre(){
                     </div>
                 </div>
             </footer>
-            
-
         </main>
         </>
     )
