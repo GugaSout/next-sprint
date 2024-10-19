@@ -22,7 +22,7 @@ interface WatsonAssistantInstance {
 
 export default function Home() {
   useEffect(() => {
-    // Verifica se o código está sendo executado no cliente
+    
     if (typeof window !== 'undefined') {
       if (window.watsonAssistantChatOptions) return;
 
