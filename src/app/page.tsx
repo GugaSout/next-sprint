@@ -5,12 +5,23 @@ import '@/estilos/home.css';
 import '../types';
 import Header from '@/components/header';
 
+declare global {
+  interface Window {
+    watsonAssistantChatOptions: {
+      integrationID: string;
+      region: string;
+      serviceInstanceID: string;
+      onLoad: (instance: any) => Promise<void>;
+      clientVersion?: string;
+    };
+  }
+}
 
 
 export default function Home() {
 
   useEffect(() => {
-    
+  
     if (window.watsonAssistantChatOptions) return;
 
     window.watsonAssistantChatOptions = {
@@ -27,7 +38,6 @@ export default function Home() {
 
     document.head.appendChild(script);
 
-   
     return () => {
       document.head.removeChild(script);
     };
