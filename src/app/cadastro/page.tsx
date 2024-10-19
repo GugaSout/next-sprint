@@ -1,18 +1,23 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
 import '@/estilos/cadastro.css'; 
 
 export default function Cadastro() {
+    const [step, setStep] = useState(1);  // Controla a etapa do formulário
     const [formData, setFormData] = useState({
-        email: '',
-        senha: '',
-        confirmaSenha: '',
         nome: '',
+        dataNascimento: '',
+        email: '',
         cpf: '',
-        telefone: ''
+        cnh: '',
+        cep: '',
+        endereco: '',
+        senha: '',
+        confirmaSenha: ''
     });
 
+    // Função para lidar com mudanças nos inputs
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
@@ -20,6 +25,7 @@ export default function Cadastro() {
         });
     };
 
+    // Função para validar a senha na última etapa
     const validarSenha = () => {
         if (formData.senha !== formData.confirmaSenha) {
             alert('As senhas não coincidem.');
@@ -30,100 +36,129 @@ export default function Cadastro() {
         }
     };
 
+    // Função para lidar com o envio do formulário em cada etapa
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (validarSenha()) {
-            // Redirecionar para a página inicial
-            window.location.href = '/';
+        if (step === 1) {
+            setStep(2);  // Passa para a segunda etapa
+        } else if (step === 2) {
+            setStep(3);  // Passa para a última etapa
+        } else if (step === 3 && validarSenha()) {
+            // Aqui, você pode fazer a submissão final ou redirecionar o usuário
+            console.log('Formulário enviado com sucesso:', formData);
+            // Redirecionar ou exibir mensagem de sucesso
         }
     };
 
     return (
         <main className="Maincad">
             <form onSubmit={handleSubmit} className="log">
-                <div className='Divcad'>
+                <div className="Divcad">
                     <h2>Cadastro</h2>
-                    <div className='Cadastro'>
-                        <input
-                            className="objCad"
-                            type="email"
-                            name="email"
-                            id="email"
-                            required
-                            placeholder="Usuário ou e-mail"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
-                        <input
-                            className="objCad"
-                            type="text"
-                            name="nome"
-                            id="nome"
-                            required
-                            placeholder="Nome Completo"
-                            value={formData.nome}
-                            onChange={handleChange}
-                        />
-                        <input
-                            className="objCad"
-                            type="text"
-                            name="cpf"
-                            id="cpf"
-                            required
-                            placeholder="CPF"
-                            value={formData.cpf}
-                            onChange={handleChange}
-                        />
-                        <input
-                            className="objCad"
-                            type="tel"
-                            name="telefone"
-                            id="telefone"
-                            required
-                            placeholder="Telefone"
-                            value={formData.telefone}
-                            onChange={handleChange}
-                        />
-                        <input
-                            className="objCad"
-                            type="password"
-                            name="senha"
-                            id="senha"
-                            required
-                            placeholder="Senha"
-                            value={formData.senha}
-                            onChange={handleChange}
-                        />
-                        <input
-                            className="objCad"
-                            type="password"
-                            name="confirmaSenha"
-                            id="confirmaSenha"
-                            required
-                            placeholder="Confirmação da Senha"
-                            value={formData.confirmaSenha}
-                            onChange={handleChange}
-                        />
-                        <button className="btnCad" type="submit">Enviar</button>
-                    </div>
+
+                    {/* Primeira Etapa */}
+                    {step === 1 && (
+                        <div className="Cadastro">
+                            <input
+                                className="objCad"
+                                type="text"
+                                name="nome"
+                                required
+                                placeholder="Nome Completo"
+                                value={formData.nome}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="objCad"
+                                type="date"
+                                name="dataNascimento"
+                                required
+                                placeholder="Data de Nascimento"
+                                value={formData.dataNascimento}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="objCad"
+                                type="email"
+                                name="email"
+                                required
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                            <button className="btnCad" type="submit">Próximo</button>
+                        </div>
+                    )}
+
+                    {/* Segunda Etapa */}
+                    {step === 2 && (
+                        <div className="Cadastro">
+                            <input
+                                className="objCad"
+                                type="text"
+                                name="cpf"
+                                required
+                                placeholder="CPF"
+                                value={formData.cpf}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="objCad"
+                                type="text"
+                                name="cnh"
+                                required
+                                placeholder="CNH"
+                                value={formData.cnh}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="objCad"
+                                type="text"
+                                name="cep"
+                                required
+                                placeholder="CEP"
+                                value={formData.cep}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="objCad"
+                                type="text"
+                                name="endereco"
+                                required
+                                placeholder="Endereço"
+                                value={formData.endereco}
+                                onChange={handleChange}
+                            />
+                            <button className="btnCad" type="submit">Próximo</button>
+                        </div>
+                    )}
+
+                    {/* Terceira Etapa */}
+                    {step === 3 && (
+                        <div className="Cadastro">
+                            <input
+                                className="objCad"
+                                type="password"
+                                name="senha"
+                                required
+                                placeholder="Senha"
+                                value={formData.senha}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="objCad"
+                                type="password"
+                                name="confirmaSenha"
+                                required
+                                placeholder="Confirmar Senha"
+                                value={formData.confirmaSenha}
+                                onChange={handleChange}
+                            />
+                            <button className="btnCad" type="submit">Finalizar Cadastro</button>
+                        </div>
+                    )}
                 </div>
             </form>
-
-            <footer className="icones_redes">
-                <a href="https://www.instagram.com/porto/" target="_blank" rel="noreferrer">
-                    <img className="redes" src="/insta.png" alt="Instagram" />
-                </a>
-                <a
-                    href="https://api.whatsapp.com/send?1=pt_BR&phone=551130039303&text=Oi,%20Porto%20Seguro%20!"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    <img className="redes" src="/phone.png" alt="Contato porto" />
-                </a>
-                <a href="https://www.portoseguro.com.br" target="_blank" rel="noreferrer">
-                    <img className="redes" src="/web.png" alt="Site Porto" />
-                </a>
-            </footer>
         </main>
     );
 }
