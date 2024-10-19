@@ -52,113 +52,75 @@ export default function Cadastro() {
 
     return (
         <main className="Maincad">
-            <form onSubmit={handleSubmit} className="log">
-                <div className="Divcad">
-                    <h2>Cadastro</h2>
-
+            <div className='div-wpp-carro'></div>
+            <div className="Divcad">
+            <h1>CARDOCTOR</h1>
+                <form onSubmit={handleSubmit} className="FormCad">
                     {/* Primeira Etapa */}
                     {step === 1 && (
                         <div className="Cadastro">
-                            <input
-                                className="objCad"
-                                type="text"
-                                name="nome"
-                                required
-                                placeholder="Nome Completo"
-                                value={formData.nome}
-                                onChange={handleChange}
-                            />
-                            <input
-                                className="objCad"
-                                type="date"
-                                name="dataNascimento"
-                                required
-                                placeholder="Data de Nascimento"
-                                value={formData.dataNascimento}
-                                onChange={handleChange}
-                            />
-                            <input
-                                className="objCad"
-                                type="email"
-                                name="email"
-                                required
-                                placeholder="Email"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
-                            <button className="btnCad" type="submit">Próximo</button>
+                            <h2>Cadastro</h2>
+                            <div className="divInput">
+                                <label className='lblCad' htmlFor="nome">Nome Completo</label>
+                                <input className="objCad" type="text" name="nome" required  value={formData.nome} onChange={handleChange}/>
+                                <label className='lblCad' htmlFor="dataNascimento">Data de Nascimento</label>
+                                <input className="objCad" type="date" name="dataNascimento" required  value={formData.dataNascimento} onChange={handleChange}/>
+                                <label className='lblCad' htmlFor="email">Email</label>
+                                <input className="objCad" type="email" name="email" required  value={formData.email} onChange={handleChange}/>
+                                <button className="btnCad" type="submit">Próximo</button>
+                            </div>
                         </div>
                     )}
 
                     {/* Segunda Etapa */}
                     {step === 2 && (
                         <div className="Cadastro">
-                            <input
-                                className="objCad"
-                                type="text"
-                                name="cpf"
-                                required
-                                placeholder="CPF"
-                                value={formData.cpf}
-                                onChange={handleChange}
-                            />
-                            <input
-                                className="objCad"
-                                type="text"
-                                name="cnh"
-                                required
-                                placeholder="CNH"
-                                value={formData.cnh}
-                                onChange={handleChange}
-                            />
-                            <input
-                                className="objCad"
-                                type="text"
-                                name="cep"
-                                required
-                                placeholder="CEP"
-                                value={formData.cep}
-                                onChange={handleChange}
-                            />
-                            <input
-                                className="objCad"
-                                type="text"
-                                name="endereco"
-                                required
-                                placeholder="Endereço"
-                                value={formData.endereco}
-                                onChange={handleChange}
-                            />
-                            <button className="btnCad" type="submit">Próximo</button>
+                            <h2>Cadastro</h2>
+                            <div className="divInput">
+
+                                <label className='lblCad' htmlFor="cpf">CPF</label>
+                                <input className="objCad" type="text" name="cpf" required value={formData.cpf} onChange={handleChange}/>
+                                <label className='lblCad' htmlFor="cnh">CNH</label>
+                                <input className="objCad" type="text" name="cnh" required value={formData.cnh} onChange={handleChange}/>
+                                <label className='lblCad' htmlFor="cep">CEP</label>
+                                <input className="objCad" type="text" name="cep" required value={formData.cep} onChange={handleChange}/>
+                                <label className='lblCad' htmlFor="endereco">Endereço</label>
+                                <input className="objCad" type="text" name="endereco" required value={formData.endereco} onChange={handleChange}/>
+                                <button className="btnCad" type="submit">Próximo</button>
+                            </div>
                         </div>
                     )}
 
                     {/* Terceira Etapa */}
                     {step === 3 && (
                         <div className="Cadastro">
-                            <input
-                                className="objCad"
-                                type="password"
-                                name="senha"
-                                required
-                                placeholder="Senha"
-                                value={formData.senha}
-                                onChange={handleChange}
-                            />
-                            <input
-                                className="objCad"
-                                type="password"
-                                name="confirmaSenha"
-                                required
-                                placeholder="Confirmar Senha"
-                                value={formData.confirmaSenha}
-                                onChange={handleChange}
-                            />
-                            <button className="btnCad" type="submit">Finalizar Cadastro</button>
+                            <h2>Cadastro</h2>
+                            <div className="divInputSenha">
+                                <label className='lblCad' htmlFor="senha">Senha</label>
+                                <input className="objCad" type="password" name="senha" required value={formData.senha} onChange={handleChange}/>
+                                <label className='lblCad' htmlFor="confirmaSenha">Confirmar Senha</label>
+                                <input className="objCad" type="password" name="confirmaSenha" required value={formData.confirmaSenha} onChange={handleChange}/>
+                                <button className="btnCad" type="submit">Finalizar Cadastro</button>
+                            </div>
                         </div>
                     )}
-                </div>
-            </form>
+                    <div className="icones_redes_cad">
+                <a href="https://www.instagram.com/porto/" target="_blank" rel="noreferrer">
+                    <img className="redes_cad" src="insta.png" alt="Instagram" />
+                </a>
+                <a
+                    href="https://api.whatsapp.com/send?1=pt_BR&phone=551130039303&text=Oi,%20Porto%20Seguro%20!"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img className="redes_cad" src="phone.png" alt="Contato porto" />
+                </a>
+                <a href="https://www.portoseguro.com.br" target="_blank" rel="noreferrer">
+                    <img className="redes_cad" src="web.png" alt="Site Porto" />
+                </a>
+            </div>
+                </form>
+            </div>
         </main>
     );
 }

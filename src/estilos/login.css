@@ -23,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    position: relative;
 }
 .DivLogin h1{
     font-size: 3em;
@@ -84,12 +85,15 @@
     font-weight: bold;
     text-align: center;
 }
-.icones_redes{
-  text-align: center;
-  padding: 15px;
+.icones_redes_log{
+    text-align: center;
+    padding: 15px;
+    position: absolute;
+    bottom: 0px;
+    right: 30%;
 
 }
-.redes{
+.redes_log{
     margin: 5px;
     width: 3vw;
 }

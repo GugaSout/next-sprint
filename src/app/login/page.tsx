@@ -28,19 +28,19 @@ export default function Login() {
                         <Link href='/cadastro'>Não Possuo Login</Link>
                     </div>
                 </div>
-            <div className="icones_redes">
+            <div className="icones_redes_log">
                 <a href="https://www.instagram.com/porto/" target="_blank" rel="noreferrer">
-                    <img className="redes" src="insta.png" alt="Instagram" />
+                    <img className="redes_log" src="insta.png" alt="Instagram" />
                 </a>
                 <a
                     href="https://api.whatsapp.com/send?1=pt_BR&phone=551130039303&text=Oi,%20Porto%20Seguro%20!"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    <img className="redes" src="phone.png" alt="Contato porto" />
+                    <img className="redes_log" src="phone.png" alt="Contato porto" />
                 </a>
                 <a href="https://www.portoseguro.com.br" target="_blank" rel="noreferrer">
-                    <img className="redes" src="web.png" alt="Site Porto" />
+                    <img className="redes_log" src="web.png" alt="Site Porto" />
                 </a>
             </div>
             </div>
