@@ -1,71 +1,68 @@
-"use client";
-import { useEffect } from 'react';
-import '@/estilos/home.css';
+"use client"
+import { useEffect } from "react"
+import "@/estilos/home.css"
 
-import Header from '@/components/header';
+import Header from "@/components/Header/Header"
 
 declare global {
   interface Window {
     watsonAssistantChatOptions: {
-      integrationID: string;
-      region: string;
-      serviceInstanceID: string;
-      onLoad: (instance: WatsonAssistantInstance) => Promise<void>;
-      clientVersion?: string;
-    };
+      integrationID: string
+      region: string
+      serviceInstanceID: string
+      onLoad: (instance: WatsonAssistantInstance) => Promise<void>
+      clientVersion?: string
+    }
   }
 }
 
 interface WatsonAssistantInstance {
-  render: () => Promise<void>;
+  render: () => Promise<void>
 }
 
 export default function Home() {
   useEffect(() => {
-    
-    if (typeof window !== 'undefined') {
-      if (window.watsonAssistantChatOptions) return;
+    if (typeof window !== "undefined") {
+      if (window.watsonAssistantChatOptions) return
 
       window.watsonAssistantChatOptions = {
         integrationID: "d410df2d-ab85-40d5-98e5-2e4a60274a5d",
         region: "us-south",
         serviceInstanceID: "198a297c-9be0-4faa-a3c1-a4a3ccd3f138",
-        onLoad: async (instance: WatsonAssistantInstance) => { 
-          await instance.render(); 
-        }
-      };
+        onLoad: async (instance: WatsonAssistantInstance) => {
+          await instance.render()
+        },
+      }
 
-      const script = document.createElement('script');
-      script.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
-        (window.watsonAssistantChatOptions.clientVersion || 'latest') +
-        "/WatsonAssistantChatEntry.js";
+      const script = document.createElement("script")
+      script.src =
+        "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || "latest") +
+        "/WatsonAssistantChatEntry.js"
 
-      document.head.appendChild(script);
+      document.head.appendChild(script)
 
       return () => {
-        document.head.removeChild(script);
-      };
+        document.head.removeChild(script)
+      }
     }
-  }, []);
+  }, [])
 
   return (
-      <>
-      <Header/>
-      
+    <>
+      <Header />
+
       <div className="Home">
         <section className="hero-section">
           <div className="hero-content">
             <h1>Car Doctor</h1>
-            <p>
-              Saiba tudo sobre a saúde do seu carro com o CarDoctor.
-            </p>
+            <p>Saiba tudo sobre a saúde do seu carro com o CarDoctor.</p>
           </div>
           <div className="hero-image">
-            <img className='carro' src="carro_azul.png" alt="Carro Azul" />
+            <img className="carro" src="carro_azul.png" alt="Carro Azul" />
           </div>
         </section>
       </div>
-      </>
-    
-  );
+    </>
+  )
 }
