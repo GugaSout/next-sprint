@@ -9,10 +9,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {},
+      backgroundImage: {
+        "gradient-to-b": "linear-gradient(to bottom, #007BFF, #0D4F83)",
+      },
+      boxShadow: {
+        "custom-shadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+      },
     },
   },
   plugins: [],
 }
 export default config;
-
