@@ -15,6 +15,9 @@ const config: Config = {
       boxShadow: {
         "custom-shadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
       },
+      colors: {
+        "azul-escuro": "#0D4F83",
+      },
     },
   },
   plugins: [],
