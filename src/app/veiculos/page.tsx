@@ -17,7 +17,7 @@ export default function Veiculos() {
     <>
       <Header />
       <main className="flex min-h-screen w-full bg-gradient-to-b">
-        <div className="w-full flex m-10 justify-between">
+        <div className="w-full flex my-10 mx-20 justify-between">
           <div className="relative bg-cover w-[50vh] m-5 rounded-2xl overflow-hidden hover:border-8 border-blue-800 opacity-80 hover:opacity-100 hover:m-0 transition-all">
             <div className="absolute inset-0 bg-[url('/moto.png')] bg-cover bg-[80%_20%]"></div>
             <Link href="/motos">

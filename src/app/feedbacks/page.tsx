@@ -10,9 +10,9 @@ export default function Feedbacks() {
   return (
     <>
       <Header />
-      <main className="flex min-h-screen w-full bg-gradient-to-b flex-col items-center">
-        <div className="mt-10 mx-10">
-          <div className="bg-azul-escuro bg-opacity-30 text-azul-escuro rounded-3xl flex justify-around p-7 w-[160vh]">
+      <main className="flex min-h-screen w-full bg-gradient-to-b flex-col">
+        <div className="mt-10 mx-10 flex justify-center">
+          <div className="bg-azul-escuro bg-opacity-30 text-blue-900 rounded-3xl flex justify-around p-7 w-[160vh]">
             <Image
               src="/aviso.png"
               alt="Icone de aviso"
@@ -26,7 +26,7 @@ export default function Feedbacks() {
             </p>
           </div>
         </div>
-        <div className="flex m-10 justify-between flex-grow">
+        <div className="flex mx-20 my-10 justify-between flex-grow">
           <div className="relative bg-cover w-[50vh] m-5 rounded-2xl overflow-hidden hover:border-8 border-blue-800 opacity-80 hover:opacity-100 hover:m-0 transition-all">
             <div className="absolute inset-0 bg-[url('/manutencao.png')] bg-cover bg-center"></div>
             <Link href="/motos">
