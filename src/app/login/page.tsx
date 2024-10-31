@@ -1,7 +1,9 @@
 "use client"
 
+import Input from "@/components/Input/Input"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function Login() {
   const router = useRouter()
@@ -9,55 +11,56 @@ export default function Login() {
   const handleLogin = () => {
     router.push("/")
   }
-
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+  const [formData, setFormData] = useState({
+    nomeUsuario: "",
+    senha: "",
+  })
   return (
-    <main className="flex min-h-screen w-full">
+    <main className="flex flex-col lg:flex-row w-full min-h-screen">
       {/* Área da imagem de fundo */}
-      <div className="h-screen w-2/3 bg-[url('/wallpaper_carro_paisagem.jpg')] bg-left bg-cover"></div>
+      <div className="hidden lg:block lg:w-2/3 bg-[url('/wallpaper_carro_paisagem.jpg')] bg-cover bg-left h-100%"></div>
 
       {/* Área de login */}
-      <div className="w-1/3 flex flex-col justify-between p-8 bg-white">
+      <div className="lg:w-1/3 w-full flex flex-col justify-evenly p-8 bg-white h-100% ">
         {/* Título CarDoctor posicionado no topo */}
-        <div className="w-full flex justify-center">
-          <h1 className="text-5xl font-bold text-blue-600">CarDoctor</h1>
+        <div className="flex justify-center mb-8">
+          <h1 className="text-4xl lg:text-5xl font-bold text-blue-600">
+            CarDoctor
+          </h1>
         </div>
-
         {/* Formulário de login centralizado */}
-        <div className="w-full max-w-md flex flex-col items-center">
-          <label
-            className="block font-bold text-left text-lg mb-2 w-full"
-            htmlFor="nusuario"
-          >
-            Nome de Usuário
-          </label>
-          <input
-            className="p-3 mb-6 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <div className="w-full max-w-md mx-auto space-y-4">
+          <Input
+            label="Nome de Usuário"
             name="nusuario"
             type="text"
+            value={formData.nomeUsuario}
+            onChange={handleChange}
             placeholder="Insira seu nome de usuário"
           />
-
-          <label
-            className="block font-bold text-left text-lg mb-2 w-full"
-            htmlFor="senha"
-          >
-            Senha
-          </label>
-          <input
-            className="p-3 mb-6 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <Input
+            label="Senha"
             name="senha"
             type="password"
+            value={formData.senha}
+            onChange={handleChange}
             placeholder="Insira sua senha"
           />
 
           {/* Botão de Login */}
           <button
-            className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg transition-all hover:bg-white hover:text-blue-500 hover:border border-blue-500 hover:border-solid"
+            className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg transition hover:bg-white hover:text-blue-600 border border-blue-600"
             onClick={handleLogin}
           >
             Entrar
           </button>
-
+    
           {/* Link para cadastro */}
           <Link
             href="/cadastro"
@@ -65,31 +68,6 @@ export default function Login() {
           >
             Não Possuo Login
           </Link>
-        </div>
-
-        {/* Redes Sociais posicionadas no final */}
-        <div className="w-full flex justify-center items-center mt-8 space-x-4">
-          <a
-            href="https://www.instagram.com/porto/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img className="w-8 h-8" src="/insta.png" alt="Instagram" />
-          </a>
-          <a
-            href="https://api.whatsapp.com/send?1=pt_BR&phone=551130039303&text=Oi,%20Porto%20Seguro%20!"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img className="w-8 h-8" src="/phone.png" alt="Contato WhatsApp" />
-          </a>
-          <a
-            href="https://www.portoseguro.com.br"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img className="w-8 h-8" src="/web.png" alt="Site Porto Seguro" />
-          </a>
         </div>
       </div>
     </main>

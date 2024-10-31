@@ -18,7 +18,7 @@ export default function Input({
   return (
     <div>
       <label
-        className="lblCad block font-bold text-left text-lg mb-2 w-full"
+        className="lblCad block font-bold text-left text-lg mb-2 w-full md:text-md"
         htmlFor={name}
       >
         {label}

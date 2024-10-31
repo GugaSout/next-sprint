@@ -2,7 +2,6 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-
 export default function Header() {
   const router = useRouter()
 
@@ -11,9 +10,10 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-blue-500 px-10 flex justify-between items-center text-white h-[10vh] shadow-custom-shadow">
-      <div className="text-2xl font-bold">CarDoctor</div>
-      <nav className="flex space-x-6">
+    <header className="bg-blue-500 px-4 py-4 md:px-10 flex flex-col md:flex-row justify-between items-center h-auto text-white shadow-lg">
+      <div className="text-lg md:text-2xl font-bold">CarDoctor</div>
+
+      <nav className="flex flex-wrap justify-center space-x-2 md:space-x-6">
         <Link
           href="/"
           className="relative group transition-colors duration-300 hover:text-white"
@@ -43,8 +43,9 @@ export default function Header() {
           <span className="absolute left-0 top-full w-full h-[2px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
         </Link>
       </nav>
+
       <button
-        className="bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white border border-transparent hover:border-white transition duration-500"
+        className="bg-white text-blue-500 px-3 py-1 md:px-4 md:py-2 rounded-lg hover:bg-blue-500 hover:text-white border border-transparent hover:border-white transition duration-500 text-sm md:text-base"
         onClick={handleLoginClick}
       >
         Fazer login

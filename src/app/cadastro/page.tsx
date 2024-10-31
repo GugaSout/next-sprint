@@ -67,23 +67,23 @@ export default function Cadastro() {
   }
 
   return (
-    <main className="flex min-h-screen w-full">
+    <main className="flex flex-col lg:flex-row w-full min-h-screen">
       {/* Área da imagem de fundo */}
-      <div className="h-screen w-2/3 bg-[url('/wallpaper_carro_paisagem.jpg')] bg-left bg-cover"></div>
+      <div className="hidden lg:block lg:w-2/3 bg-[url('/wallpaper_carro_paisagem.jpg')] bg-cover bg-left h-100%"></div>
 
       {/* Área de login */}
-      <div className="w-1/3 flex flex-col justify-between p-8 bg-white">
+      <div className="lg:w-1/3 w-full flex flex-col justify-between p-8 bg-white h-full">
         {/* Título CarDoctor posicionado no topo */}
-        <div className="w-full flex justify-center">
-          <h1 className="text-5xl font-bold text-blue-600 items-center jus">
+        <div className="flex justify-center mb-8">
+          <h1 className="text-4xl lg:text-5xl font-bold text-blue-600">
             CarDoctor
           </h1>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-8">
           {/* Primeira Etapa */}
           {step === 1 && (
-            <div className="divInpu w-full max-w-md flex flex-col justify-between">
-              <div className="flex justify-between pb-7 px-10">
+            <div className="w-full max-w-md mx-auto space-y-4">
+              <div className="flex justify-between">
                 <div className="w-10 h-10 rounded-full bg-blue-500 border-4 border-blue-800 flex justify-center text-white font-bold">
                   1
                 </div>
@@ -124,7 +124,7 @@ export default function Cadastro() {
                 placeholder="123.456.789-09"
               />
               <button
-                className="btnCad h-10 w-full bg-blue-600 text-white font-bold rounded-lg transition-all hover:bg-white hover:text-blue-500 hover:border border-blue-500 hover:border-solid"
+                className="btnCad w-full py-3 bg-blue-600 text-white font-bold rounded-lg transition hover:bg-white hover:text-blue-600 border border-blue-600"
                 type="submit"
               >
                 PRÓXIMO
@@ -134,8 +134,8 @@ export default function Cadastro() {
 
           {/* Segunda Etapa */}
           {step === 2 && (
-            <div className="divInpu w-full max-w-md flex flex-col justify-between">
-              <div className="flex justify-between pb-14 px-10">
+            <div className="w-full max-w-md mx-auto space-y-4">
+              <div className="flex justify-between">
                 <div className="w-10 h-10 rounded-full bg-blue-500"></div>
                 <div className="w-10 h-10 rounded-full bg-blue-500 border-4 border-blue-800 flex justify-center text-white font-bold">
                   2
@@ -225,8 +225,8 @@ export default function Cadastro() {
 
           {/* Terceira Etapa */}
           {step === 3 && (
-            <div className="divInpu w-full max-w-md flex flex-col justify-between">
-              <div className="flex justify-between pb-14 px-10">
+            <div className="w-full max-w-md mx-auto space-y-4">
+              <div className="flex justify-between">
                 <div className="w-10 h-10 rounded-full bg-blue-500"></div>
                 <div className="w-10 h-10 rounded-full bg-blue-500"></div>
                 <div className="w-10 h-10 rounded-full bg-blue-500 border-4 border-blue-800 flex justify-center text-white font-bold">
@@ -277,8 +277,8 @@ export default function Cadastro() {
           )}
           {/* Quarta Etapa */}
           {step === 4 && (
-            <div className="divInpu w-full max-w-md flex flex-col justify-between">
-              <div className="flex justify-between pb-14 px-10">
+            <div className="w-full max-w-md mx-auto space-y-4">
+              <div className="flex justify-between">
                 <div className="w-10 h-10 rounded-full bg-blue-500"></div>
                 <div className="w-10 h-10 rounded-full bg-blue-500"></div>
                 <div className="w-10 h-10 rounded-full bg-blue-500"></div>
@@ -336,37 +336,6 @@ export default function Cadastro() {
             </div>
           )}
         </form>
-        <div className="icones_redes_cad w-full flex justify-center items-center mt-8 space-x-4">
-          <a
-            href="https://www.instagram.com/porto/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              className="redes_cad w-8 h-8"
-              src="insta.png"
-              alt="Instagram"
-            />
-          </a>
-          <a
-            href="https://api.whatsapp.com/send?1=pt_BR&phone=551130039303&text=Oi,%20Porto%20Seguro%20!"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              className="redes_cad w-8 h-8"
-              src="phone.png"
-              alt="Contato porto"
-            />
-          </a>
-          <a
-            href="https://www.portoseguro.com.br"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img className="redes_cad w-8 h-8" src="web.png" alt="Site Porto" />
-          </a>
-        </div>
       </div>
     </main>
   )

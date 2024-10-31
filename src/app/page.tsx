@@ -51,7 +51,6 @@ export default function Home() {
   return (
     <>
       <Header />
-
       <div className="Home">
         <section className="hero-section">
           <div className="hero-content">
