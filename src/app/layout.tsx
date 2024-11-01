@@ -17,8 +17,7 @@ export default function RootLayout({
       <head>
       <link rel="icon" href="/roda.png" type="image/x-icon" />
       </head>
-      <body>
-      
+      <body> 
         {children}
       </body>
     </html>

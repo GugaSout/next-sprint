@@ -51,17 +51,26 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="Home">
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1>Car Doctor</h1>
-            <p>Saiba tudo sobre a saúde do seu carro com o CarDoctor.</p>
+      <div className="flex flex-col items-center min-h-screen bg-white py-10">
+        <section className="flex flex-col md:flex-row w-full justify-between items-center px-5 md:px-10">
+          <div className="max-w-lg text-center md:text-left mb-10 md:mb-0">
+            <h1 className="text-4xl md:text-5xl font-bold text-blue-600">
+              Car Doctor
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 mt-4">
+              Saiba tudo sobre a saúde do seu carro com o CarDoctor.
+            </p>
           </div>
-          <div className="hero-image">
-            <img className="carro" src="carro_azul.png" alt="Carro Azul" />
+          <div className="flex justify-center md:justify-end w-full md:w-1/2">
+            <img
+              className="w-4/5 md:w-1/2 lg:w-[50vw]"
+              src="carro_azul.png"
+              alt="Carro Azul"
+            />
           </div>
         </section>
       </div>
     </>
   )
+
 }
