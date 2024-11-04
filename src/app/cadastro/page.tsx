@@ -3,40 +3,62 @@
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import Input from "@/components/Input/Input"
+import { Usuario, loginusuario, enderecousuario, usuario_endereco } from "@/types"
 
 export default function Cadastro() {
   const router = useRouter()
 
-  const [step, setStep] = useState(1) // Controla a etapa do formulário
-  const [formData, setFormData] = useState({
-    nome: "",
-    dataNascimento: "",
-    email: "",
-    cpf: "",
-    cnh: "",
-    cep: "",
-    senha: "",
-    confirmaSenha: "",
-    estado: "",
-    cidade: "",
-    bairro: "",
-    ddd: "",
-    ddi: "",
-    numero: "",
-    nomeUsuario: "",
+  const [step, setStep] = useState(1)
+  const [Usuario, setTipoUsuario] = useState<Usuario>({
+    ID_USUARIO: 0,
+    NR_IDADE: 0,
+    NR_CNH: 0,
+    DT_NASCIMENTO: "",
+    NM_USUARIO: "",
+    NR_CPF: ""
   })
 
-  // Função para lidar com mudanças nos inputs
+  const [loginusuario, setLoginUsuario] = useState<loginusuario>({
+    ID_LOGIN: 0,
+    DS_SENHA: "",
+    ID_USUARIO: 0,
+    DS_USUARIO: ""
+  })
+
+  const [enderecousuario, setEnderecousuario] = useState<enderecousuario>({
+  ID_ENDERECO: 0,
+  NR_CEP: "",
+  NM_ESTADO: "",
+  NM_CIDADE: "",
+  NM_BAIRRO: "",
+  NM_LOGRADOURO: "",
+  TP_ENDERECO: "",
+  DS_COMPLEMENTO: "", 
+  DS_PONTO_REFERENCIA: ""
+  })
+
+  const [ usuario_endereco, setUsuario_endereco ] = useState<usuario_endereco>({
+    ID_ENDERECO: 0,
+    ID_USUARIO: 0
+  })
+
+  const [confirmarSenha, setConfirmarSenha] = useState("")
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    if (name in Usuario) {
+      setTipoUsuario({ ...Usuario, [name]: value })
+    } else {
+      setLoginUsuario({ ...loginusuario, [name]: value })
+    }
   }
 
-  // Função para validar a senha na última etapa
+  const handleConfirmarSenhaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmarSenha(e.target.value)
+  }
+
   const validarSenha = () => {
-    if (formData.senha !== formData.confirmaSenha) {
+    if (loginusuario.DS_SENHA !== confirmarSenha) {
       alert("As senhas não coincidem.")
       return false
     } else {
@@ -45,20 +67,93 @@ export default function Cadastro() {
     }
   }
 
-  // Função para lidar com o envio do formulário em cada etapa
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (step === 1) {
-      setStep(2)
+      try {
+        const response = await fetch("http://localhost:8080/usuario", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Usuario),
+        })
+
+        if (response.ok) {
+          alert("Usuário cadastrado com sucesso.")
+          setTipoUsuario({
+            ID_USUARIO: 0,
+            NR_IDADE: 0,
+            NR_CNH: 0,
+            DT_NASCIMENTO: "",
+            NM_USUARIO: "",
+            NR_CPF: "",
+          })
+          setStep(3)
+        }
+      } catch (error) {
+        console.error("Falha ao criar o usuário: ", error)
+      }
     } else if (step === 2) {
-      setStep(3)
+      try {
+        const response = await fetch("http://localhost:8080/endereco", fetch("http://localhost:8080/relacionamento_endereco" {
+          method: "POST", "POST",
+          headers: {
+            "Content-Type": "application/json", "Content-Type": "application/json",
+          },
+          body: JSON.stringify(enderecousuario), JSON.stringify(usuario_endereco),
+        }))
+
+        if (response.ok) {
+          alert("Endereço cadastrado com sucesso.")
+          setEnderecousuario({
+            ID_ENDERECO: 0,
+            NR_CEP: "",
+            NM_ESTADO: "",
+            NM_CIDADE: "",
+            NM_BAIRRO: "",
+            NM_LOGRADOURO: "",
+            TP_ENDERECO: "",
+            DS_COMPLEMENTO: "",
+            DS_PONTO_REFERENCIA: "",
+          })
+          setUsuario_endereco({
+            ID_ENDERECO: 0,
+            ID_USUARIO: 0
+          })
+          setStep(2)
+        }
+      } catch (error) {
+        console.error("Falha ao criar o endereço: ", error)
+      }
     } else if (step === 3) {
       setStep(4)
     } else if (step === 4 && validarSenha()) {
-      console.log("Formulário enviado com sucesso:", formData)
-      router.push("/")
+      try {
+        const response = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginusuario),
+        })
+
+        if (response.ok) {
+          alert("Login cadastrado com sucesso.")
+          setLoginUsuario({
+            ID_LOGIN: 0,
+            DS_SENHA: "",
+            ID_USUARIO: 0,
+            DS_USUARIO: "",
+          })
+          router.push("/")
+        }
+      } catch (error) {
+        console.error("Falha ao criar o login: ", error)
+      }
     }
   }
+
   const handleBack = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (step > 1) {
@@ -93,33 +188,33 @@ export default function Cadastro() {
               </div>
               <Input
                 label="Nome Completo"
-                name="nome"
+                name="NM_USUARIO"
                 type="text"
-                value={formData.nome}
+                value={Usuario.NM_USUARIO}
                 onChange={handleChange}
                 placeholder="Insira seu nome completo"
               />
               <Input
                 label="Data de Nascimento"
-                name="dataNascimento"
+                name="DT_NASCIMENTO"
                 type="date"
-                value={formData.dataNascimento}
+                value={Usuario.DT_NASCIMENTO}
                 onChange={handleChange}
                 placeholder=""
               />
               <Input
                 label="CNH - Habilitacao"
-                name="cnh"
+                name="NR_CNH"
                 type="number"
-                value={formData.cnh}
+                value={Usuario.NR_CNH}
                 onChange={handleChange}
                 placeholder="Insira sua CNH"
               />
               <Input
                 label="CPF"
-                name="cpf"
-                type="text"
-                value={formData.cpf}
+                name="NR_CPF"
+                type="number"
+                value={Usuario.NR_CPF}
                 onChange={handleChange}
                 placeholder="123.456.789-09"
               />
@@ -223,7 +318,6 @@ export default function Cadastro() {
             </div>
           )}
 
-          {/* Terceira Etapa */}
           {step === 3 && (
             <div className="w-full max-w-md mx-auto space-y-4">
               <div className="flex justify-between">
@@ -275,7 +369,6 @@ export default function Cadastro() {
               </div>
             </div>
           )}
-          {/* Quarta Etapa */}
           {step === 4 && (
             <div className="w-full max-w-md mx-auto space-y-4">
               <div className="flex justify-between">
@@ -290,7 +383,7 @@ export default function Cadastro() {
                 label="Senha"
                 name="senha"
                 type="password"
-                value={formData.senha}
+                value={loginusuario.DS_SENHA}
                 onChange={handleChange}
                 placeholder="Insira uma senha"
               />
@@ -298,7 +391,7 @@ export default function Cadastro() {
                 label="Confirmar Senha"
                 name="confirmaSenha"
                 type="password"
-                value={formData.confirmaSenha}
+                value={confirmarSenha}
                 onChange={handleChange}
                 placeholder="Confirme a sua senha"
               />
@@ -306,17 +399,9 @@ export default function Cadastro() {
                 label="Nome de Usuario"
                 name="nomeUsuario"
                 type="text"
-                value={formData.nomeUsuario}
+                value={loginusuario.DS_USUARIO}
                 onChange={handleChange}
                 placeholder="Insira um nome de usuario"
-              />
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Insira seu email"
               />
               <div className="flex w-full justify-center space-x-[70px] ">
                 <button

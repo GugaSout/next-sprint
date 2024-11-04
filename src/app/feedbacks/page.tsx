@@ -8,8 +8,8 @@ import Image from "next/image"
 export default function Feedbacks() {
   return (
     <>
-      <Header />
-      <main className="flex min-h-screen w-full bg-gradient-to-b flex-col">
+      <main className="flex h-screen w-full bg-gradient-to-b flex-col">
+        <Header />
         <div className="mt-10 mx-10 flex justify-center">
           <div className="bg-azul-escuro bg-opacity-30 text-blue-900 rounded-3xl flex flex-col lg:flex-row justify-around p-7 w-full items-center">
             <Image
@@ -18,7 +18,7 @@ export default function Feedbacks() {
               width={50}
               height={50}
             />
-            <p className="lg:ml-4 text-justify 2xl:text-3xl/10">
+            <p className="ml-8 md:ml-0 xs:ml-0 text-justify 2xl:text-2xl/10">
               Os dados coletados a partir desta pesquisa de satisfação serão
               utilizados exclusivamente para aprimorar os serviços oferecidos
               pela Cardoctor. Sua opinião é essencial para nós!
@@ -26,7 +26,7 @@ export default function Feedbacks() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 h-[70vh] gap-5 mx-5 md:grid-cols-2  lg:grid-cols-3 my-10">
+        <div className="grid grid-cols-1 h-[70vh] gap-5 mx-5 md:grid-cols-2  lg:grid-cols-3 my-10 ">
           {/* Card 1 */}
           <div className="relative bg-cover m-5 rounded-2xl overflow-hidden hover:border-8 border-blue-800 opacity-80 hover:opacity-100 hover:m-0 transition-all w-1/1 group">
             <div className="w-full h-full bg-[url('/manutencao.png')] bg-cover bg-center"></div>

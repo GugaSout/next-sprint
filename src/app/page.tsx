@@ -50,8 +50,8 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <div className="flex flex-col items-center min-h-screen bg-white py-10">
+      <div className="flex flex-col min-h-screen bg-white">
+        <Header />
         <section className="flex flex-col md:flex-row w-full justify-between items-center px-5 md:px-10">
           <div className="max-w-lg text-center md:text-left mb-10 md:mb-0">
             <h1 className="text-4xl md:text-5xl font-bold text-blue-600">
