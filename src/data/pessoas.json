@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "nome": "Gustavo Souto",
+        "dataNascimento": "28/04/2006",
+        "email": "gsmelo2804@gmail.com",
+        "cpf": "484.479.128.17",
+        "cnh": "123456789",
+        "cep": "08225-310",
+        "endereco": "Av. das Alamandas",
+        "senha": "aaa",
+        "confirmaSenha": "aaa"
+    },
+    {
+        "id": 1730734835868,
+        "nome": "GUSTAVO SOUTO DE MELO",
+        "dataNascimento": "2006-04-28",
+        "email": "gsmelo2006@gmail.com",
+        "cpf": "484.487.745-25",
+        "cnh": "151asdasd",
+        "cep": "08225-310",
+        "endereco": "av das alamandas",
+        "senha": "aaa",
+        "confirmaSenha": "aaa"
+    },
+    {
+        "id": 1730734891861,
+        "nome": "Pendrive olá",
+        "dataNascimento": "2000-08-24",
+        "email": "test@example.us",
+        "cpf": "484.487.745-25",
+        "cnh": "123543456",
+        "cep": "08225-310",
+        "endereco": "Jorge asdasdasda",
+        "senha": "123456",
+        "confirmaSenha": "123456"
+    }
+]
