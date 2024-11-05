@@ -1,5 +1,4 @@
 import Header from "@/components/Header/Header"
-import "@/estilos/sobre.css"
 
 export default function Sobre() {
   return (
