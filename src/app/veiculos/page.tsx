@@ -1,7 +1,6 @@
 "use client"
 import Header from "@/components/Header/Header"
 import React, { useState } from "react"
-import "@/estilos/veiculos.css"
 import Link from "next/link"
 
 
@@ -15,7 +14,6 @@ export default function Veiculos() {
             <div className="w-full h-full bg-[url('/moto.png')] bg-cover bg-[80%_20%]"></div>
             <Link href="/veiculos/motos">
               <span className="absolute inset-0"></span>
-              {/* Placeholder para o Link */}
             </Link>
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-blue-900 bg-opacity-80 text-white transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
               <h2 className="font-bold text-lg">Motos</h2>
@@ -26,7 +24,6 @@ export default function Veiculos() {
             <div className="w-full h-full bg-[url('/carro.png')] bg-cover bg-[center_bottom]"></div>
             <Link href="/veiculos/carros">
               <span className="absolute inset-0"></span>
-              {/* Placeholder para o Link */}
             </Link>
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-blue-900 bg-opacity-80 text-white transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
               <h2 className="font-bold text-lg">Carros</h2>
@@ -37,7 +34,6 @@ export default function Veiculos() {
             <div className="w-full h-full bg-[url('/caminhao.png')] bg-cover bg-[70%_30%]"></div>
             <Link href="/veiculos/caminhoes">
               <span className="absolute inset-0"></span>
-              {/* Placeholder para o Link */}
             </Link>
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-blue-900 bg-opacity-80 text-white transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
               <h2 className="font-bold text-lg">Caminhoes</h2>

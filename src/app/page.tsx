@@ -1,6 +1,5 @@
 "use client"
 import { useEffect } from "react"
-import "@/estilos/home.css"
 
 import Header from "@/components/Header/Header"
 

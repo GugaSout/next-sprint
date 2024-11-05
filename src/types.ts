@@ -1,37 +1,13 @@
-export type TipoMoto = {
-  id: number
-  quilometragem: number
-  ano: number
-  placa: string
-  modelo: string
-  tipo: string
-  marca: string
-  historico: string
-  descricao: string
-}
-
-export type TipoCarro = {
-  id: number
-  quilometragem: number
-  ano: number
-  placa: string
-  modelo: string
-  tipo: string
-  marca: string
-  historico: string
-  descricao: string
-}
-
-export type TipoCaminhao = {
-  id: number
-  quilometragem: number
-  ano: number
-  placa: string
-  modelo: string
-  tipo: string
-  marca: string
-  historico: string
-  descricao: string
+export type AutomovelUsuario = {
+  ID_AUTOMOVEL: number
+  NR_QUILOMETRAGEM: number
+  NR_ANO: number
+  DS_PLACA: string
+  DS_MODELO: string
+  TP_AUTOMOVEL: string
+  DS_MARCA: string
+  DS_HISTORICO_AUTOMOVEL: string
+  DS_AUTOMOVEL: string
 }
 
 export type Usuario = {
@@ -65,4 +41,15 @@ export type enderecousuario = {
 export type usuario_endereco = {
   ID_USUARIO: number,
   ID_ENDERECO: number
+}
+
+export type telefoneusuario = {
+  ID_TELEFONE: number,
+  ID_USUARIO: number,
+  NR_DDI: number,
+  NR_DDD: number,
+  NR_TELEFONE: string,
+  NR_TELEFONE_COMPLETO: string,
+  TP_TELEFONE: string,
+  ST_TELEFONE: string
 }

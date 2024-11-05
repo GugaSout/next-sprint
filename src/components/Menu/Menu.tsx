@@ -7,15 +7,14 @@ interface MenuOption {
 }
 
 interface DropdownMenuProps {
-  options: MenuOption[] // Lista de opções do menu
+  options: MenuOption[]
 }
 
 export default function Menu({ options }: DropdownMenuProps) {
-  const [isOpen, setIsOpen] = useState(false) // Controle do menu
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="relative inline-block">
-      {/* Botão de três pontinhos */}
       <button
         className="p-2 rounded-full bg-gray-200 hover:bg-gray-300"
         onClick={() => setIsOpen(!isOpen)}
@@ -23,7 +22,6 @@ export default function Menu({ options }: DropdownMenuProps) {
         &#x2022;&#x2022;&#x2022;
       </button>
 
-      {/* Menu de Opções */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div

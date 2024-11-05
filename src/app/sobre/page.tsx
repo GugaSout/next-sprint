@@ -11,7 +11,10 @@ export default function Sobre() {
             CarDoctor
           </h1>
           <p>
-            Texto sobre a CarDoctor
+            CarDoctor é uma Plataforma Digital que oferece a opção de realizar
+            um Autodiagnostico do seu veículo sem a necessidade de ir até uma
+            oficina mecânica e da dependência de um humano, visando a
+            praticidade e podendo ser acessado de qualquer lugar do Brasil. 
           </p>
         </div>
         <footer className="h-[20vh] flex justify-evenly w-full">

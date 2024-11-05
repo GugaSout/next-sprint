@@ -3,85 +3,178 @@
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import Input from "@/components/Input/Input"
-import { Usuario, loginusuario, enderecousuario, usuario_endereco } from "@/types"
+import {
+  Usuario,
+  loginusuario,
+  enderecousuario,
+  usuario_endereco,
+  telefoneusuario
+} from "@/types"
 
 export default function Cadastro() {
   const router = useRouter()
 
   const [step, setStep] = useState(1)
-  const [Usuario, setTipoUsuario] = useState<Usuario>({
+  const [Usuario, setUsuario] = useState<Usuario>({
     ID_USUARIO: 0,
     NR_IDADE: 0,
     NR_CNH: 0,
     DT_NASCIMENTO: "",
     NM_USUARIO: "",
-    NR_CPF: ""
+    NR_CPF: "",
   })
 
   const [loginusuario, setLoginUsuario] = useState<loginusuario>({
     ID_LOGIN: 0,
     DS_SENHA: "",
     ID_USUARIO: 0,
-    DS_USUARIO: ""
+    DS_USUARIO: "",
   })
 
   const [enderecousuario, setEnderecousuario] = useState<enderecousuario>({
-  ID_ENDERECO: 0,
-  NR_CEP: "",
-  NM_ESTADO: "",
-  NM_CIDADE: "",
-  NM_BAIRRO: "",
-  NM_LOGRADOURO: "",
-  TP_ENDERECO: "",
-  DS_COMPLEMENTO: "", 
-  DS_PONTO_REFERENCIA: ""
+    ID_ENDERECO: 0,
+    NR_CEP: "",
+    NM_ESTADO: "",
+    NM_CIDADE: "",
+    NM_BAIRRO: "",
+    NM_LOGRADOURO: "",
+    TP_ENDERECO: "",
+    DS_COMPLEMENTO: "",
+    DS_PONTO_REFERENCIA: "",
   })
 
-  const [ usuario_endereco, setUsuario_endereco ] = useState<usuario_endereco>({
+  const [usuario_endereco, setUsuario_endereco] = useState<usuario_endereco>({
     ID_ENDERECO: 0,
-    ID_USUARIO: 0
+    ID_USUARIO: 0,
   })
 
   const [confirmarSenha, setConfirmarSenha] = useState("")
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    if (name in Usuario) {
-      setTipoUsuario({ ...Usuario, [name]: value })
-    } else {
-      setLoginUsuario({ ...loginusuario, [name]: value })
+  const [telefoneusuario, setTelefoneusuario] = useState<telefoneusuario>({
+    ID_TELEFONE: 0,
+    ID_USUARIO: 0,
+    NR_DDI: 0,
+    NR_DDD: 0,
+    NR_TELEFONE: "",
+    NR_TELEFONE_COMPLETO: "",
+    TP_TELEFONE: "",
+    ST_TELEFONE: ""
+  })
+
+  const fetchUser = async () => {
+    try {
+      const userResponse = await fetch(
+        `http://localhost:8080/usuario/{Usuario.NR_CPF}`
+      )
+      const userData = await userResponse.json()
+
+      return {
+        ID_USUARIO: userData.ID_USUARIO,
+      }
+    } catch (error) {
+      console.error("Erro ao buscar usuário ou endereço:", error)
+      return null
     }
   }
 
-  const handleConfirmarSenhaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmarSenha(e.target.value)
-  }
+  // Função de busca e associação de usuário e endereço
+  const fetchUserAndAddress = async () => {
+    try {
+      const userResponse = await fetch(
+        `http://localhost:8080/usuario/${Usuario.NR_CPF}`
+      )
+      const userData = await userResponse.json()
 
-  const validarSenha = () => {
-    if (loginusuario.DS_SENHA !== confirmarSenha) {
-      alert("As senhas não coincidem.")
-      return false
-    } else {
-      alert("Registrado com sucesso!")
-      return true
+      const addressResponse = await fetch(
+        `http://localhost:8080/endereco/${enderecousuario.NR_CEP}`
+      )
+      const addressData = await addressResponse.json()
+
+      if (userData && addressData) {
+        // Verificação adicional
+        return {
+          ID_USUARIO: userData.ID_USUARIO,
+          ID_ENDERECO: addressData.ID_ENDERECO,
+        }
+      } else {
+        console.error("Erro: usuário ou endereço não encontrados.")
+        return null
+      }
+    } catch (error) {
+      console.error("Erro ao buscar usuário ou endereço:", error)
+      return null
     }
   }
 
+  const associateUserAndAddress = async () => {
+       const identifiers = await fetchUserAndAddress()
+       if (!identifiers) return 
+       const usuario_endereco = ({
+         ID_ENDERECO: identifiers.ID_ENDERECO,
+         ID_USUARIO: identifiers.ID_USUARIO,
+       })
+       try {
+         const response = await fetch(
+           "http://localhost:8080/relacionamento_endereco",
+           {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify(usuario_endereco),
+           }
+         )
+         if (response.ok) {
+           alert("Associação criada com sucesso.")
+           setUsuario_endereco({
+             ID_ENDERECO: identifiers.ID_ENDERECO,
+             ID_USUARIO: identifiers.ID_USUARIO,
+           })
+         }
+       } catch (error) {
+         console.error("Erro ao criar a associação:", error)
+       }
+  }
+const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target;
+
+  if (step === 1) {
+    setUsuario((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  } else if (step === 2) {
+    setEnderecousuario((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  } else if (step === 3) {
+    setTelefoneusuario((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+    else if (step === 4) {
+    setLoginUsuario((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+}
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     if (step === 1) {
       try {
         const response = await fetch("http://localhost:8080/usuario", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(Usuario),
         })
 
         if (response.ok) {
           alert("Usuário cadastrado com sucesso.")
-          setTipoUsuario({
+          setUsuario({
             ID_USUARIO: 0,
             NR_IDADE: 0,
             NR_CNH: 0,
@@ -89,52 +182,70 @@ export default function Cadastro() {
             NM_USUARIO: "",
             NR_CPF: "",
           })
-          setStep(3)
-        }
-      } catch (error) {
-        console.error("Falha ao criar o usuário: ", error)
-      }
-    } else if (step === 2) {
-      try {
-        const response = await fetch("http://localhost:8080/endereco", fetch("http://localhost:8080/relacionamento_endereco" {
-          method: "POST", "POST",
-          headers: {
-            "Content-Type": "application/json", "Content-Type": "application/json",
-          },
-          body: JSON.stringify(enderecousuario), JSON.stringify(usuario_endereco),
-        }))
-
-        if (response.ok) {
-          alert("Endereço cadastrado com sucesso.")
-          setEnderecousuario({
-            ID_ENDERECO: 0,
-            NR_CEP: "",
-            NM_ESTADO: "",
-            NM_CIDADE: "",
-            NM_BAIRRO: "",
-            NM_LOGRADOURO: "",
-            TP_ENDERECO: "",
-            DS_COMPLEMENTO: "",
-            DS_PONTO_REFERENCIA: "",
-          })
-          setUsuario_endereco({
-            ID_ENDERECO: 0,
-            ID_USUARIO: 0
-          })
           setStep(2)
         }
       } catch (error) {
-        console.error("Falha ao criar o endereço: ", error)
+        console.error("Falha ao criar o usuário:", error)
+      }
+    } else if (step === 2) {
+      try {
+        const response = await fetch("http://localhost:8080/endereco", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(enderecousuario),
+        })
+
+        if (response.ok) {
+          alert("Endereço cadastrado com sucesso.")
+          await associateUserAndAddress()
+          setStep(3)
+        }
+      } catch (error) {
+        console.error("Falha ao criar o endereço:", error)
       }
     } else if (step === 3) {
-      setStep(4)
-    } else if (step === 4 && validarSenha()) {
+      const identifiers = await fetchUser()
+      if (!identifiers) return
+      try {
+        const telefoneusuario = {
+          ID_TELEFONE: 0,
+          ID_USUARIO: identifiers.ID_USUARIO,
+          NR_DDI: 0,
+          NR_DDD: 0,
+          NR_TELEFONE: "",
+          NR_TELEFONE_COMPLETO: "",
+          TP_TELEFONE: "",
+          ST_TELEFONE: "",
+        }
+        const response = await fetch("http://localhost:8080/telefone", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(telefoneusuario),
+        })
+        if (response.ok) {
+          alert("Telefone cadastrado com sucesso.")
+          setTelefoneusuario({
+            ID_TELEFONE: 0,
+            ID_USUARIO: identifiers.ID_USUARIO,
+            NR_DDI: 0,
+            NR_DDD: 0,
+            NR_TELEFONE: "",
+            NR_TELEFONE_COMPLETO: "",
+            TP_TELEFONE: "",
+            ST_TELEFONE: "",
+          })
+          setStep(4)
+        }
+      } catch (error) {
+        console.error("Falha ao criar o endereço:", error)
+      }
+      } else if (step === 4 && validarSenha()) {
+        const identifiers = await fetchUser()
+        if (!identifiers) return
       try {
         const response = await fetch("http://localhost:8080/login", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(loginusuario),
         })
 
@@ -143,24 +254,29 @@ export default function Cadastro() {
           setLoginUsuario({
             ID_LOGIN: 0,
             DS_SENHA: "",
-            ID_USUARIO: 0,
+            ID_USUARIO: identifiers.ID_USUARIO,
             DS_USUARIO: "",
           })
           router.push("/")
         }
       } catch (error) {
-        console.error("Falha ao criar o login: ", error)
+        console.error("Falha ao criar o login:", error)
       }
     }
   }
 
-  const handleBack = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    if (step > 1) {
-      setStep(step - 1)
-    }
+
+  const handleBack = () => {
+    if (step > 1) setStep(step - 1)
   }
 
+  const validarSenha = () => {
+    if (loginusuario.DS_SENHA !== confirmarSenha) {
+      alert("As senhas não coincidem.")
+      return false
+    }
+    return true
+  }
   return (
     <main className="flex flex-col lg:flex-row w-full min-h-screen">
       {/* Área da imagem de fundo */}
@@ -213,7 +329,7 @@ export default function Cadastro() {
               <Input
                 label="CPF"
                 name="NR_CPF"
-                type="number"
+                type="text"
                 value={Usuario.NR_CPF}
                 onChange={handleChange}
                 placeholder="123.456.789-09"
@@ -240,14 +356,17 @@ export default function Cadastro() {
               </div>
               <label
                 className="block font-bold text-left text-lg mb-2 w-full"
-                htmlFor="estado"
+                htmlFor="NM_ESTADO"
               >
                 Estado
               </label>
               <select
                 className="p-3 mb-6 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                name="estado"
+                name="NM_ESTADO"
+                value={enderecousuario.NM_ESTADO}
+                onChange={handleChange}
               >
+                <option value="">Selecione o Estado</option>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
                 <option value="AP">Amapá</option>
@@ -278,25 +397,25 @@ export default function Cadastro() {
               </select>
               <Input
                 label="CEP"
-                name="cep"
+                name="NR_CEP"
                 type="text"
-                value={formData.cep}
+                value={enderecousuario.NR_CEP}
                 onChange={handleChange}
                 placeholder="00000-000"
               />
               <Input
                 label="Bairro"
-                name="bairro"
+                name="NM_BAIRRO"
                 type="text"
-                value={formData.bairro}
+                value={enderecousuario.NM_BAIRRO}
                 onChange={handleChange}
                 placeholder="Insira seu bairro"
               />
               <Input
                 label="Cidade"
-                name="cidade"
+                name="NM_CIDADE"
                 type="text"
-                value={formData.cidade}
+                value={enderecousuario.NM_CIDADE}
                 onChange={handleChange}
                 placeholder="Insira sua cidade"
               />
@@ -330,25 +449,25 @@ export default function Cadastro() {
               </div>
               <Input
                 label="DDD"
-                name="ddd"
+                name="NR_DDD"
                 type="number"
-                value={formData.ddd}
+                value={telefoneusuario.NR_DDD}
                 onChange={handleChange}
                 placeholder="Insira seu DDD"
               />
               <Input
                 label="DDI"
-                name="ddi"
+                name="NR_DDI"
                 type="number"
-                value={formData.ddi}
+                value={telefoneusuario.NR_DDI}
                 onChange={handleChange}
                 placeholder="Insira seu DDI"
               />
               <Input
                 label="Número"
-                name="numero"
+                name="NR_TELEFONE"
                 type="text"
-                value={formData.numero}
+                value={telefoneusuario.NR_TELEFONE}
                 onChange={handleChange}
                 placeholder="00000-0000"
               />

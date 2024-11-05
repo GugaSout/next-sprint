@@ -48,7 +48,7 @@ export default function UserProfile() {
           )
           const data = await response.json()
           const automoveisMoto = data.filter(
-            (auto: AutomovelUsuario) => auto.TP_AUTOMOVEL === "MOTO"
+            (auto: AutomovelUsuario) => auto.TP_AUTOMOVEL === "CAMINHAO"
           )
           setAutomovelUsuario(automoveisMoto)
         } catch (error) {
@@ -84,7 +84,7 @@ export default function UserProfile() {
         </h1>
 
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Automóveis (Tipo: Moto)
+          Automóveis (Tipo: Caminhao)
         </h2>
         {automovelUsuario.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -129,7 +129,7 @@ export default function UserProfile() {
           </div>
         ) : (
           <div className="text-center">
-            <p className="text-gray-600 mb-4">Nenhuma moto encontrada.</p>
+            <p className="text-gray-600 mb-4">Nenhuma caminhao encontrada.</p>
             <Link
               href={`veiculos/cadastroVeiculo/`}
               className="inline-block py-2 px-4 bg-blue-600 text-white font-bold rounded-lg transition duration-300 hover:bg-blue-700"

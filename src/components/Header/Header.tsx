@@ -1,9 +1,18 @@
 "use client"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function Header() {
   const router = useRouter()
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken")
+    if (token) {
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   const handleLoginClick = () => {
     router.push("/login")
@@ -44,12 +53,21 @@ export default function Header() {
         </Link>
       </nav>
 
-      <button
-        className="bg-white text-blue-500 px-3 py-1 md:px-4 md:py-2 rounded-lg hover:bg-blue-500 hover:text-white border border-transparent hover:border-white transition duration-500 text-sm md:text-base"
-        onClick={handleLoginClick}
-      >
-        Fazer login
-      </button>
+      {isLoggedIn ? (
+        <Link
+          href="/perfil"
+          className="bg-white text-blue-500 w-10 h-10 flex items-center justify-center rounded-full transition duration-500 hover:bg-blue-500 hover:text-white border border-transparent hover:border-white"
+        >
+          👁️
+        </Link>
+      ) : (
+        <button
+          className="bg-white text-blue-500 px-3 py-1 md:px-4 md:py-2 rounded-lg hover:bg-blue-500 hover:text-white border border-transparent hover:border-white transition duration-500 text-sm md:text-base"
+          onClick={handleLoginClick}
+        >
+          Fazer login
+        </button>
+      )}
     </header>
   )
 }
